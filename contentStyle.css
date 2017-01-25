@@ -1,0 +1,68 @@
+.clean-reader-body {
+  overflow: hidden;
+}
+
+.clean-reader-target {
+  background: #f0f0f0;
+}
+.clean-reader-mask {
+  z-index: 998;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background:white;
+}
+.clean-reader-container {
+  z-index: 999;
+  width: 100%;
+  height: 98%;
+  position: absolute;
+  overflow-y: auto;
+  top: 0;
+  background:white;
+}
+
+.clean-reader-container-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 10px;
+  zoom: 120%;
+}
+
+.clean-reader-container-inner pre code {
+  overflow: auto;
+}
+
+.clean-reader-toolbar {
+  position: fixed;
+  right: 10px;
+  top: 5px;
+}
+
+.clean-reader-toolbar ul {
+  margin: 0;padding: 0;
+}
+
+.clean-reader-toolbar li {
+  margin: 0;padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.clean-reader-close,
+.clean-reader-zoom-out,
+.clean-reader-zoom-in {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 20px;
+  color:gray;
+  font-weight: 300;
+  display: inline-block;
+}
+
+.clean-reader-zoom-in {
+  font-size: 30px;
+}
