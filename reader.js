@@ -1,8 +1,17 @@
+var ReaderHelper = ReaderHelper || {
+  clean: function(elem) {
+    // $(elem).removeAttr("style").removeAttr("class")
+    $(elem).find("div,p,ul,li,a,img").removeAttr("style").removeAttr("class")
+    return elem
+  }
+}
+
 var Reader = Reader || {
   id: 'clean-reader-container',
   off: true,
   current_zoom: 120,
   zoom_step: 10,
+
   read: function(elem) {
     this.current_zoom = 120;
     $("body").addClass("clean-reader-body")
@@ -10,7 +19,9 @@ var Reader = Reader || {
     var top = $("body").scrollTop();
     $("#"+Reader.id).css("top", ""+top+"px")
     $(".clean-reader-mask").css("top", ""+top+"px")
-    $("#"+Reader.id+" .clean-reader-container-inner").html($(elem).removeClass("clean-reader-target").clone())
+    var cloned_elem = $(elem).clone()
+    cloned_elem = ReaderHelper.clean(cloned_elem);
+    $("#"+Reader.id+" .clean-reader-container-inner").html(cloned_elem)
   },
 
   send_message: function() {
