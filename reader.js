@@ -1,6 +1,6 @@
 var ReaderHelper = ReaderHelper || {
   clean: function(elem) {
-    // $(elem).removeAttr("style").removeAttr("class")
+    $(elem).removeAttr("style").removeAttr("class")
     $(elem).find("div,p,ul,li,a,img").removeAttr("style").removeAttr("class")
     return elem
   }
@@ -57,7 +57,7 @@ var Reader = Reader || {
         Reader.close();
       }
     });
-    $("div").click(function(){
+    $("div").dblclick(function(){
       if (Reader.off) {return;}
       Reader.read($(this))
       return false;
