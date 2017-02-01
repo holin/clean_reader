@@ -12,7 +12,7 @@
   },
 
   "permissions": [
-    "activeTab", "tabs", "http://*/*", "https://*/*"
+    "activeTab", "tabs", "http://*/*", "https://*/*", "file://*/*"
   ],
 
 
@@ -33,7 +33,7 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*", "https://*/*"
+        "http://*/*", "https://*/*", "file://*/*"
       ],
       "css": ["contentStyle.css"],
       "js": [
