@@ -9,8 +9,14 @@ var ReaderHelper = ReaderHelper || {
 var Reader = Reader || {
   id: 'clean-reader-container',
   off: true,
+  reading: false,
   current_zoom: 120,
   zoom_step: 10,
+
+  resize: function() {
+    var height = $(window).height()
+    $(".clean-reader-container").css("height", ""+height+"px")
+  },
 
   read: function(elem) {
     this.current_zoom = 120;
@@ -22,6 +28,8 @@ var Reader = Reader || {
     var cloned_elem = $(elem).clone()
     cloned_elem = ReaderHelper.clean(cloned_elem);
     $("#"+Reader.id+" .clean-reader-container-inner").html(cloned_elem)
+    this.resize()
+    this.reading = true
   },
 
   send_message: function() {
@@ -40,7 +48,20 @@ var Reader = Reader || {
     }
   },
 
+  zoomin: function() {
+    Reader.current_zoom += Reader.zoom_step;
+    console.log("this.zoomin", Reader.current_zoom)
+    $(".clean-reader-container-inner").css("zoom", ""+Reader.current_zoom+"%")
+  },
+
+  zoomout: function() {
+    Reader.current_zoom -= Reader.zoom_step;
+    console.log("this.zoomout", Reader.current_zoom)
+    $(".clean-reader-container-inner").css("zoom", ""+Reader.current_zoom+"%")
+  },
+
   close: function() {
+    Reader.reading = false
     $(".clean-reader-mask").remove();
     $("#"+Reader.id).remove();
     $("body").removeClass("clean-reader-body");
@@ -50,11 +71,23 @@ var Reader = Reader || {
     this.close();
   },
 
+  keycode_map: function() {
+    if (!Reader.reading) {
+      return {}
+    }
+    return {
+      "27": Reader.close,
+      "187": Reader.zoomin,
+      "189": Reader.zoomout,
+    }
+  },
+
   init_events: function() {
     $(document).keyup(function(e) {
       if (Reader.off) {return;}
-      if (e.keyCode == 27) { // escape key maps to keycode `27`
-        Reader.close();
+      var fn = Reader.keycode_map()[""+e.keyCode]
+      if (typeof(fn) == "function") {
+        fn()
       }
     });
     $("div").dblclick(function(){
@@ -77,12 +110,10 @@ var Reader = Reader || {
       Reader.close();
     });
     $('body').on("click", ".clean-reader-zoom-out", function(){
-      Reader.current_zoom -= Reader.zoom_step;
-      $(".clean-reader-container-inner").css("zoom", ""+Reader.current_zoom+"%")
+      Reader.zoomout()
     })
     $('body').on("click", ".clean-reader-zoom-in", function(){
-      Reader.current_zoom += Reader.zoom_step;
-      $(".clean-reader-container-inner").css("zoom", ""+Reader.current_zoom+"%")
+      Reader.zoomin()
     })
   },
 
