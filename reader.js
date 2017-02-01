@@ -77,11 +77,11 @@ var Reader = Reader || {
       Reader.close();
     });
     $('body').on("click", ".clean-reader-zoom-out", function(){
-      Reader.current_zoom += Reader.zoom_step;
+      Reader.current_zoom -= Reader.zoom_step;
       $(".clean-reader-container-inner").css("zoom", ""+Reader.current_zoom+"%")
     })
     $('body').on("click", ".clean-reader-zoom-in", function(){
-      Reader.current_zoom -= Reader.zoom_step;
+      Reader.current_zoom += Reader.zoom_step;
       $(".clean-reader-container-inner").css("zoom", ""+Reader.current_zoom+"%")
     })
   },
