@@ -1,6 +1,6 @@
 ## A Chrome Extension help to read web page more easier. It looks like below:
 
-![Screenshots 1](./screenshots/screenshot.gif)
+![Screenshots 1](./screenshots/1.gif)
 
 ## Features
 

@@ -99,6 +99,11 @@
 .clean-reader-container-inner pre code {
   overflow: auto;
 }
+.clean-reader-container-inner ul {
+  margin-left: 20px;
+}
+
+
 
 .clean-reader-toolbar {
   position: fixed;
