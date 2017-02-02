@@ -25,6 +25,10 @@
     // "default_popup": "popup/popup.html"
   },
 
+  "web_accessible_resources": [
+    "assets/*.*"
+ ],
+
   "background": {
     "scripts": ["libs/jquery.min.js", "background.js"],
     "persistent": false

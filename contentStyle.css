@@ -1,14 +1,74 @@
+@font-face {
+  font-family: 'zoom';
+  src: url('chrome-extension://__MSG_@@extension_id__/assets/fonts/fonts.ttf?91650004') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'zoom';
+    src: url('../font/zoom.svg?91650004#zoom') format('svg');
+  }
+}
+*/
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "zoom";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-cancel:before { content: '\e800'; } /* '' */
+.icon-zoom-in:before { content: '\e801'; } /* '' */
+.icon-zoom-out:before { content: '\e802'; } /* '' */
+
 .clean-reader-body {
   overflow: hidden;
 }
 
+.clean-reader-body-prepare .clean-reader-target * {
+  background-color: transparent !important;
+}
+
 .clean-reader-target {
-  background: #f0f0f0;
+  background: #efefef !important;
 }
 .clean-reader-mask {
-  z-index: 998;
+  z-index: 2147483646;
   width: 100%;
-  height: 100%;
+  height: 105%;
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -16,9 +76,9 @@
   background:white;
 }
 .clean-reader-container {
-  z-index: 999;
+  z-index: 2147483647;
   width: 100%;
-  height: 98%;
+  height: 100%;
   position: absolute;
   overflow-y: auto;
   top: 0;
@@ -26,11 +86,14 @@
 }
 
 .clean-reader-container-inner {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 10px;
-  zoom: 120%;
+  width: 800px;
+  margin: 10px auto;
+  padding: 20px;
+  zoom: 100%;
   line-height: 1.5em;
+  border: 1px solid #ededed;
+  box-shadow: 0px 0px 1px 4px#eee;
+  border-radius: 5px;
 }
 
 .clean-reader-container-inner pre code {
@@ -39,7 +102,7 @@
 
 .clean-reader-toolbar {
   position: fixed;
-  right: 10px;
+  right: 20px;
   top: 5px;
 }
 
@@ -57,13 +120,15 @@
 .clean-reader-zoom-out,
 .clean-reader-zoom-in {
   cursor: pointer;
-  padding: 10px;
+  padding: 8px;
   font-size: 20px;
-  color:gray;
-  font-weight: 300;
+  color:#ccc;
+  font-weight: 200;
   display: inline-block;
 }
 
-.clean-reader-zoom-out {
-  font-size: 30px;
+.clean-reader-close:hover,
+.clean-reader-zoom-out:hover,
+.clean-reader-zoom-in:hover {
+  color:gray;
 }
