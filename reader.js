@@ -160,9 +160,9 @@ var Reader = Reader || {
             //toolbar
             '<div class="clean-reader-toolbar">',
             '<ul>',
-            '<li><span class="clean-reader-close icon-cancel" title="close"></span></li>',
-            '<li><span class="clean-reader-zoom-in icon-zoom-in" title="zoom in"></span></li>',
-            '<li><span class="clean-reader-zoom-out icon-zoom-out" title="zoom out"></span></li>',
+            '<li><span class="clean-reader-close cricon-cancel" title="close"></span></li>',
+            '<li><span class="clean-reader-zoom-in cricon-zoom-in" title="zoom in"></span></li>',
+            '<li><span class="clean-reader-zoom-out cricon-zoom-out" title="zoom out"></span></li>',
             '</ul>',
             '</div>',
             '<div class="clean-reader-container-inner">',

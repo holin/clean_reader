@@ -15,7 +15,7 @@
 }
 */
 
- [class^="icon-"]:before, [class*=" icon-"]:before {
+ [class^="cricon-"]:before, [class*=" cricon-"]:before {
   font-family: "zoom";
   font-style: normal;
   font-weight: normal;
@@ -50,9 +50,9 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-cancel:before { content: '\e800'; } /* '' */
-.icon-zoom-in:before { content: '\e801'; } /* '' */
-.icon-zoom-out:before { content: '\e802'; } /* '' */
+.cricon-cancel:before { content: '\e800'; } /* '' */
+.cricon-zoom-in:before { content: '\e801'; } /* '' */
+.cricon-zoom-out:before { content: '\e802'; } /* '' */
 
 .clean-reader-body {
   overflow: hidden;
