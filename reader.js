@@ -30,7 +30,11 @@ var Reader = Reader || {
         var top = $("body").scrollTop();
         $("#" + Reader.id).css("top", "" + top + "px")
         $(".clean-reader-mask").css("top", "" + top + "px")
-        var cloned_elem = $(elem).clone()
+        $elem = $(elem)
+        if ($elem.parents(".clean-reader-target").length > 0) {
+            $elem = $elem.parents(".clean-reader-target")
+        }
+        var cloned_elem = $elem.clone()
         cloned_elem = ReaderHelper.clean(cloned_elem);
         $("#" + Reader.id + " .clean-reader-container-inner").html(cloned_elem)
         this.resize()
