@@ -23,7 +23,7 @@ new (function($) {
 			if (is_off === undefined) {
 				is_off = true;
 			}
-			console.log("update_icon_for_tab", tabId, off_status, is_off);
+			// console.log("update_icon_for_tab", tabId, off_status, is_off);
 			if (is_off) {
 				chrome.browserAction.setIcon({
 					path: off_path
@@ -51,8 +51,30 @@ new (function($) {
 		chrome.extension.onMessage.addListener(
 			function(request, sender, sendResponse) {
 				var tabId = sender.tab.id;
-				off_status[tabId] = request.is_off
-				update_icon_for_tab(tabId);
+				var action = request.action || 'toggle'
+				switch (action) {
+					case "toggle":
+						off_status[tabId] = request.is_off
+						update_icon_for_tab(tabId);
+						sendResponse({'toggle': 'success'})
+						break;
+					case "init_zoom_percents":
+						// console.log("init_zoom_percents action")
+						sendResponse(ReaderDb.zoomPercents)
+						break;
+					case "update_zoom_percent":
+						// console.log("update_zoom_percent action")
+						ReaderDb.zoomPercents[request.domain] = request.percent
+						ReaderDb.save()
+						sendResponse({'update_zoom_percent': 'success'})
+						break;
+					default:
+						off_status[tabId] = request.is_off
+						update_icon_for_tab(tabId);
+						sendResponse({'toggle': 'success'})
+						break;
+				}
+
  			}
 		);
 

@@ -12,7 +12,9 @@
   },
 
   "permissions": [
-    "activeTab", "tabs", "http://*/*", "https://*/*", "file://*/*"
+    "activeTab", "tabs", "http://*/*", "https://*/*", "file://*/*",
+    //extra
+    "storage"
   ],
 
 
@@ -30,7 +32,7 @@
  ],
 
   "background": {
-    "scripts": ["libs/jquery.min.js", "background.js"],
+    "scripts": ["libs/jquery.min.js", "db.js", "background.js"],
     "persistent": false
   },
 

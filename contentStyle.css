@@ -63,8 +63,10 @@
 }
 
 .clean-reader-target {
-  background: #efefef !important;
+  background: #f0f0f0 !important;
+  position: relative;
 }
+
 .clean-reader-mask {
   z-index: 2147483646;
   width: 100%;

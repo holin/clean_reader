@@ -23,4 +23,8 @@ Esc | Cancel clean reading
 - | Zoom out
 = | Zoom in
 
+## Todo
+
+- [x] Persist zoom percent for each domain
+
 

@@ -19,12 +19,13 @@ var Reader = Reader || {
         var height = $(window).height()
         $(".clean-reader-container").css("height", "" + height + "px")
         var w = Reader.origin_width / Reader.current_zoom * 100;
-        console.log("w", w)
         $(".clean-reader-container-inner").css("width", "" + w + "px")
     },
 
+    //main worker
     read: function(elem) {
-        this.current_zoom = 100;
+        this.current_zoom = Reader.zoomPercents[self.location.hostname] || 100;
+        this.update_zoom()
         $("body").addClass("clean-reader-body").removeClass("clean-reader-body-prepare")
         this.make_container();
         var top = $("body").scrollTop();
@@ -37,21 +38,43 @@ var Reader = Reader || {
         var cloned_elem = $elem.clone()
         cloned_elem = ReaderHelper.clean(cloned_elem);
         $("#" + Reader.id + " .clean-reader-container-inner .clean-reader-container-inner-content").html(cloned_elem)
-        this.resize()
+        Reader.dozoom()
         this.reading = true
     },
 
-    send_message: function() {
+    //messages
+    msg_toggle: function() {
         chrome.extension.sendMessage({
+            action: "toggle",
             is_off: this.off
         }, function(response) {
-            console.log(response);
+            // console.log(response);
         });
     },
 
+    msg_init_zoom_percents: function() {
+        chrome.extension.sendMessage({
+            action: "init_zoom_percents"
+        }, function(response) {
+            Reader.zoomPercents = response || {}
+            // console.log("after init Reader.zoomPercents", Reader.zoomPercents)
+        });
+    },
+
+    msg_update_zoom_percent: function() {
+        chrome.extension.sendMessage({
+            action: "update_zoom_percent",
+            domain: self.location.hostname,
+            percent: Reader.current_zoom,
+        }, function(response) {
+        });
+    },
+
+    //end messages
+
     toggle: function() {
         this.off = !this.off;
-        this.send_message();
+        this.msg_toggle();
         if(this.off) {
             this.turn_off()
         } else {
@@ -61,15 +84,24 @@ var Reader = Reader || {
 
     zoomin: function() {
         Reader.current_zoom += Reader.zoom_step;
-        $(".clean-reader-container-inner").css("zoom", "" + Reader.current_zoom + "%")
-        Reader.resize()
+        Reader.dozoom()
     },
 
     zoomout: function() {
         Reader.current_zoom -= Reader.zoom_step;
-        console.log("this.zoomout", Reader.current_zoom)
+        Reader.dozoom()
+    },
+
+    dozoom: function() {
+        // console.log("Reader.current_zoom", Reader.current_zoom)
         $(".clean-reader-container-inner").css("zoom", "" + Reader.current_zoom + "%")
         Reader.resize()
+        Reader.update_zoom()
+    },
+
+    update_zoom: function() {
+        Reader.zoomPercents[self.location.hostname] = this.current_zoom
+        Reader.msg_update_zoom_percent()
     },
 
     close: function() {
@@ -106,7 +138,7 @@ var Reader = Reader || {
         })
 
         $(document).keyup(function(e) {
-            console.log("reader.js init init_events", e.keyCode)
+            // console.log("reader.js init init_events", e.keyCode)
             if(Reader.off) {
                 return;
             }
@@ -174,3 +206,8 @@ var Reader = Reader || {
         $("body").append(htmls.join(""))
     }
 }
+
+
+Reader.zoomPercentss = Reader.zoomPercentss || {}
+Reader.msg_init_zoom_percents()
+
