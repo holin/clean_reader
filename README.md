@@ -18,7 +18,7 @@
 
 Key | Action
 --- | ---
-r | Turn on/off CleanRead
+rr (press `r` twice in one second) | Turn on/off CleanRead
 Esc | Cancel clean reading
 - | Zoom out
 = | Zoom in
