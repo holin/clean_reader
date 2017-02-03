@@ -1,7 +1,7 @@
 var ReaderHelper = ReaderHelper || {
     clean: function(elem) {
         $(elem).removeAttr("style").removeAttr("class")
-        $(elem).find("div,p,ul,li,a,img").removeAttr("style").removeAttr("class")
+        $(elem).find("div,p,ul,li,a,img,iframe").removeAttr("style").removeAttr("class")
         return elem
     }
 }
@@ -26,7 +26,7 @@ var Reader = Reader || {
     read: function(elem) {
         this.current_zoom = Reader.zoomPercents[self.location.hostname] || 100;
         this.update_zoom()
-        $("body").addClass("clean-reader-body").removeClass("clean-reader-body-prepare")
+        $("html").addClass("clean-reader-body").removeClass("clean-reader-body-prepare")
         this.make_container();
         var top = $("body").scrollTop();
         $("#" + Reader.id).css("top", "" + top + "px")
@@ -108,9 +108,9 @@ var Reader = Reader || {
         Reader.reading = false
         $(".clean-reader-mask").remove();
         $("#" + Reader.id).remove();
-        $("body").removeClass("clean-reader-body").removeClass("clean-reader-body-prepare");
+        $("html").removeClass("clean-reader-body").removeClass("clean-reader-body-prepare");
         if(!Reader.off) {
-          $("body").addClass("clean-reader-body-prepare");
+          $("html").addClass("clean-reader-body-prepare");
         }
     },
 

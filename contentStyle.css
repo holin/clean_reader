@@ -57,6 +57,9 @@
 .clean-reader-body {
   overflow: hidden;
 }
+.clean-reader-body * {
+  overflow: hidden;
+}
 
 .clean-reader-body-prepare .clean-reader-target * {
   background-color: transparent !important;
