@@ -57,9 +57,6 @@
 .clean-reader-body {
   overflow: hidden;
 }
-.clean-reader-body * {
-  overflow: hidden;
-}
 
 .clean-reader-body-prepare .clean-reader-target * {
   background-color: transparent !important;
@@ -114,6 +111,11 @@
 .clean-reader-container-inner-content > * {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+/* fix content's first element margin top */
+.clean-reader-container-inner-content > * > :first-child {
+  margin-top: 0 !important;
 }
 
 /* fix content breaking width */
