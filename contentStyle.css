@@ -102,6 +102,9 @@
 .clean-reader-container-inner ul {
   margin-left: 20px;
 }
+.clean-reader-container-inner img {
+  max-width: 100%;
+}
 
 
 
