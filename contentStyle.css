@@ -95,7 +95,6 @@
   box-shadow: 0px 0px 1px 4px#eee;
   border-radius: 5px;
 }
-
 .clean-reader-container-inner pre code {
   overflow: auto;
 }
@@ -104,6 +103,22 @@
 }
 .clean-reader-container-inner img {
   max-width: 100%;
+}
+
+/* fix content margin */
+.clean-reader-container-inner-content > * {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* fix content breaking width */
+.clean-reader-container-inner-content * {
+  width: auto !important;
+}
+
+/* fix content overflow */
+.cr-clear {
+  clear: both;
 }
 
 

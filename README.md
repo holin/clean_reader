@@ -10,7 +10,7 @@
 
 ## Usage
 
-1. Click the icon to turn on CleanRead
+1. Type `r` to turn on/off CleanRead
 2. Move your mouse over the part you want to read, which will display with light gray background
 3. Double click
 
@@ -18,6 +18,7 @@
 
 Key | Action
 --- | ---
+r | Turn on/off CleanRead
 Esc | Cancel clean reading
 - | Zoom out
 = | Zoom in

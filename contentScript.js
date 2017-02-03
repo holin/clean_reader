@@ -1,8 +1,11 @@
 new (function($) {
 	function init($) {
-		setInterval(function(){
-			// console.log("reader", Reader);
-		}, 3000)
+		$(document).keyup(function(e) {
+				console.debug("content script key code", e.keyCode)
+				if (e.keyCode == 82) { //r
+						Reader.toggle();
+				}
+		});
 	}
 	init($);
 })($);

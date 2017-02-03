@@ -36,7 +36,7 @@ var Reader = Reader || {
         }
         var cloned_elem = $elem.clone()
         cloned_elem = ReaderHelper.clean(cloned_elem);
-        $("#" + Reader.id + " .clean-reader-container-inner").html(cloned_elem)
+        $("#" + Reader.id + " .clean-reader-container-inner .clean-reader-container-inner-content").html(cloned_elem)
         this.resize()
         this.reading = true
     },
@@ -106,6 +106,7 @@ var Reader = Reader || {
         })
 
         $(document).keyup(function(e) {
+            console.log("reader.js init init_events", e.keyCode)
             if(Reader.off) {
                 return;
             }
@@ -165,11 +166,11 @@ var Reader = Reader || {
             '<li><span class="clean-reader-zoom-out cricon-zoom-out" title="zoom out"></span></li>',
             '</ul>',
             '</div>',
-            '<div class="clean-reader-container-inner">',
-            "</div></div>"
+            '<div class="clean-reader-container-inner"><div class="clean-reader-container-inner-content"></div>',
+            "<div class='cr-clear'></div>",
+            "</div>",
+            "</div>"
         ]
         $("body").append(htmls.join(""))
     }
 }
-
-Reader.toggle();

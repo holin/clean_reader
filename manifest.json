@@ -41,7 +41,7 @@
       ],
       "css": ["contentStyle.css"],
       "js": [
-              "libs/jquery.min.js", "contentScript.js"
+              "libs/jquery.min.js", "contentScript.js", "reader.js"
             ]
     }
   ]
