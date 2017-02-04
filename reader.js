@@ -107,6 +107,7 @@ var Reader = Reader || {
     close: function() {
         Reader.reading = false
         $(".clean-reader-mask").remove();
+        $(".clean-reader-target").removeClass("clean-reader-target")
         $("#" + Reader.id).remove();
         $("html").removeClass("clean-reader-body").removeClass("clean-reader-body-prepare");
         if(!Reader.off) {
