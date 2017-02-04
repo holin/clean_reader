@@ -120,7 +120,12 @@
 
 /* fix content breaking width */
 .clean-reader-container-inner-content * {
-  width: auto !important;
+  max-width: 100% !important;
+}
+
+/* fix text align */
+.clean-reader-container-inner-content div {
+  text-align: left !important;
 }
 
 /* fix content overflow */
