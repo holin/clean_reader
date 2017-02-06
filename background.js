@@ -78,16 +78,16 @@ new (function($) {
  			}
 		);
 
-		// chrome.browserAction.onClicked.addListener(function(tab) {
-		// 	chrome.tabs.executeScript(
-		// 		null,
-		// 		{file: "libs/jquery.min.js"}
-		// 	);
-		// 	chrome.tabs.executeScript(
-		// 		null,
-		// 		{file: "reader.js"}
-		// 	);
- 		// });
+		chrome.browserAction.onClicked.addListener(function(tab) {
+			// chrome.tabs.executeScript(
+			// 	null,
+			// 	{file: "libs/jquery.min.js"}
+			// );
+			chrome.tabs.executeScript(
+				null,
+				{code: "Reader.toggle()"}
+			);
+ 		});
 
 
 	}
