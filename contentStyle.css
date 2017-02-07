@@ -54,6 +54,18 @@
 .cricon-zoom-in:before { content: '\e801'; } /* '' */
 .cricon-zoom-out:before { content: '\e802'; } /* '' */
 
+
+/*reset*/
+.clean-reader-body * {
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/*end reset*/
+
 .clean-reader-body {
   overflow: hidden;
 }

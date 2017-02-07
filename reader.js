@@ -1,5 +1,8 @@
 var ReaderHelper = ReaderHelper || {
     clean: function(elem) {
+        if ($(elem).find("svg").height() === 0) {
+            $(elem).find("svg").css("max-height", "0px")
+        }
         $(elem).removeAttr("style").removeAttr("class")
         $(elem).find("div,p,ul,li,a,img,iframe").removeAttr("style").removeAttr("class")
         return elem
