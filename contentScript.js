@@ -7,11 +7,13 @@ new (function($) {
 					toggle_key_press_count += 1
 					setTimeout(function() {
 						toggle_key_press_count = 0
-					}, 1000);
+					}, 500);
 					if (toggle_key_press_count > 1) {
 						//only trigger toggle after `r` press more then once in one second.
 						Reader.toggle();
 					}
+				} else {
+					toggle_key_press_count = 0
 				}
 		});
 	}

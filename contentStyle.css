@@ -69,8 +69,25 @@
 .clean-reader-body {
   overflow: hidden;
 }
+.clean-reader-body h1 {
+  font-weight: 500;
+  font-size: 2em;
+  margin: 30px 0 10px 0;
+}
+.clean-reader-body h2 {
+  font-weight: 400;
+  font-size: 1.5em;
+  margin: 20px 0 10px 0;
+}
+.clean-reader-body h3 {
+  font-weight: 300;
+  font-size: 1.2em;
+  margin: 15px 0 10px 0;
+}
 .clean-reader-body body {
   width: 100% !important;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #444;
 }
 
 .clean-reader-body-prepare .clean-reader-target * {
@@ -115,7 +132,7 @@
 .clean-reader-container-inner pre code {
   overflow: auto;
 }
-.clean-reader-container-inner ul {
+.clean-reader-container-inner ul, .clean-reader-container-inner ol {
   margin-left: 20px;
 }
 .clean-reader-container-inner img {
