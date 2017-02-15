@@ -151,27 +151,56 @@ var Reader = Reader || {
                 fn()
             }
         });
+
+        $(document).mousemove(function(e) {
+            if(Reader.off || Reader.reading) {
+                return;
+            }
+            var $this = $(e.target);
+            if($this.is(".clean-reader-target")) {
+                return;
+            }
+            if(!$this.is(Reader.target_selector)) {
+                return;
+            }
+            console.log(e.target)
+            $(".clean-reader-target").removeClass("clean-reader-target");
+            $this.addClass("clean-reader-target");
+        })
+
         $(Reader.target_selector).dblclick(function() {
             if(Reader.off) {
                 return;
             }
             Reader.read($(this))
             return false;
-        }).mouseenter(function() {
-            if(Reader.off) {
-                return;
-            }
-            var $this = $(this);
-            $(Reader.target_selector).removeClass("clean-reader-target");
-            $this.addClass("clean-reader-target");
-        }).mouseleave(function() {
-            if(Reader.off) {
-                return;
-            }
-            $(Reader.target_selector).removeClass("clean-reader-target");
-            var $this = $(this);
-            $this.removeClass("clean-reader-target");
         })
+        // .mousemove(function(e) {
+        //     if(Reader.off) {
+        //         return;
+        //     }
+        //     var $this = $(this);
+        //     if($this.is(".clean-reader-target")) {
+        //         return;
+        //     }
+        //     $(Reader.target_selector).removeClass("clean-reader-target");
+        //     $this.addClass("clean-reader-target");
+        // })
+        // .mouseenter(function() {
+        //     if(Reader.off) {
+        //         return;
+        //     }
+        //     var $this = $(this);
+        //     $(Reader.target_selector).removeClass("clean-reader-target");
+        //     $this.addClass("clean-reader-target");
+        // }).mouseleave(function() {
+        //     if(Reader.off) {
+        //         return;
+        //     }
+        //     $(Reader.target_selector).removeClass("clean-reader-target");
+        //     var $this = $(this);
+        //     $this.removeClass("clean-reader-target");
+        // })
 
         $('body').on("click", ".clean-reader-close", function() {
             Reader.close();
