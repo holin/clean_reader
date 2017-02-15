@@ -160,10 +160,13 @@ var Reader = Reader || {
             if($this.is(".clean-reader-target")) {
                 return;
             }
+
             if(!$this.is(Reader.target_selector)) {
+                if ($this.parents(Reader.target_selector).length == 0) {
+                    $(".clean-reader-target").removeClass("clean-reader-target");
+                }
                 return;
             }
-            console.log(e.target)
             $(".clean-reader-target").removeClass("clean-reader-target");
             $this.addClass("clean-reader-target");
         })
