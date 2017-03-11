@@ -26,6 +26,6 @@ Esc | Cancel clean reading
 ## Todo
 
 - [x] Persist zoom percent for each domain
-- [ ] Find easy way to read code (in `pre` tag mostly)
+- [x] Find easy way to read code (in `pre` tag mostly)
 
 

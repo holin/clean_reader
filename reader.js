@@ -108,6 +108,14 @@ var Reader = Reader || {
     },
 
     close: function() {
+        // close code pre first?
+        if (
+            $("body pre.max-pre").length > 0
+        ) {
+            $("body pre.max-pre").remove();
+            return;
+        }
+
         Reader.reading = false
         $(".clean-reader-mask").remove();
         $(".clean-reader-target").removeClass("clean-reader-target")
@@ -178,36 +186,18 @@ var Reader = Reader || {
             Reader.read($(this))
             return false;
         })
-        // .mousemove(function(e) {
-        //     if(Reader.off) {
-        //         return;
-        //     }
-        //     var $this = $(this);
-        //     if($this.is(".clean-reader-target")) {
-        //         return;
-        //     }
-        //     $(Reader.target_selector).removeClass("clean-reader-target");
-        //     $this.addClass("clean-reader-target");
-        // })
-        // .mouseenter(function() {
-        //     if(Reader.off) {
-        //         return;
-        //     }
-        //     var $this = $(this);
-        //     $(Reader.target_selector).removeClass("clean-reader-target");
-        //     $this.addClass("clean-reader-target");
-        // }).mouseleave(function() {
-        //     if(Reader.off) {
-        //         return;
-        //     }
-        //     $(Reader.target_selector).removeClass("clean-reader-target");
-        //     var $this = $(this);
-        //     $this.removeClass("clean-reader-target");
-        // })
+
+        $('body').on("dblclick", ".clean-reader-container pre", function() {
+            $pre = $(this).clone().addClass("max-pre");
+            $("body").append($pre);
+            var top = $("body").scrollTop();
+            $pre.css("top", ""+top+"px");
+        });
 
         $('body').on("click", ".clean-reader-close", function() {
             Reader.close();
         });
+
         $('body').on("click", ".clean-reader-zoom-out", function() {
             Reader.zoomout()
         })
