@@ -4,7 +4,12 @@ var ReaderHelper = ReaderHelper || {
             $(elem).find("svg").css("max-height", "0px")
         }
         $(elem).removeAttr("style").removeAttr("class")
+        //backup pre parent style
+        var pre_parent_class = $(elem).find("div > pre").parent().attr("class")
         $(elem).find("div,p,ul,li,a,img,iframe").removeAttr("style").removeAttr("class")
+        if (pre_parent_class) {
+            $(elem).find("div > pre").parent().attr("class", pre_parent_class)
+        }
         return elem
     }
 }
@@ -110,9 +115,9 @@ var Reader = Reader || {
     close: function() {
         // close code pre first?
         if (
-            $("body pre.max-pre").length > 0
+            $("body .max-pre").length > 0
         ) {
-            $("body pre.max-pre").remove();
+            $("body .max-pre").remove();
             return;
         }
 
@@ -139,6 +144,19 @@ var Reader = Reader || {
             "187": Reader.zoomin,
             "189": Reader.zoomout,
         }
+    },
+
+    max_pre: function(pre) {
+        var container = $("<div class='max-pre'></div>")
+        //toolbar
+        container.append(
+            "<span class='pre-background-toggle'>Dark</span>"
+        )
+        var $pre = container.append(pre.clone())
+        $("body").append($pre);
+        var top = $("body").scrollTop();
+        $pre.css("top", ""+top+"px");
+        container.css("zoom", "" + Reader.current_zoom + "%")
     },
 
     init_events: function() {
@@ -188,11 +206,19 @@ var Reader = Reader || {
         })
 
         $('body').on("dblclick", ".clean-reader-container pre", function() {
-            $pre = $(this).clone().addClass("max-pre");
-            $("body").append($pre);
-            var top = $("body").scrollTop();
-            $pre.css("top", ""+top+"px");
+            Reader.max_pre($(this))
         });
+
+        $('body').on("click", ".pre-background-toggle", function(){
+            var container = $(this).parents(".max-pre")
+            if (container.is(".max-pre-dark")) {
+                $(this).text("dark")
+                container.removeClass("max-pre-dark").addClass("max-pre-light")
+            } else {
+                $(this).text("light")
+                container.removeClass("max-pre-light").addClass("max-pre-dark")
+            }
+        })
 
         $('body').on("click", ".clean-reader-close", function() {
             Reader.close();
@@ -234,6 +260,5 @@ var Reader = Reader || {
 }
 
 
-Reader.zoomPercentss = Reader.zoomPercentss || {}
 Reader.msg_init_zoom_percents()
 

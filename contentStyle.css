@@ -70,9 +70,10 @@
   overflow: hidden;
 }
 .clean-reader-body h1 {
+  line-height: 1.5em;
   font-weight: 500;
   font-size: 2em;
-  margin: 30px 0 10px 0;
+  margin: 20px 0 10px 0;
 }
 .clean-reader-body h2 {
   font-weight: 400;
@@ -94,11 +95,44 @@
   z-index: 2147483647;
   width: 100%;
   height: 100%;
+  padding: 10px;
   position: absolute;
   top: 0;
   left: 0;
   margin: 0 !important;
+  background: #f0f0f0;
 }
+
+.clean-reader-body .max-pre code {
+  background: transparent;
+  color: #444;
+  line-height: 1.5em;
+}
+
+.clean-reader-body .max-pre-dark {
+  background: #444;
+  color: #f0f0f0;
+}
+
+.clean-reader-body .max-pre-light {
+  background: #f0f0f0;
+  color: #444;
+}
+
+.clean-reader-body .pre-background-toggle {
+  display: inline-block;
+  padding: 3px 5px;
+  position: absolute;
+  right: 10px;
+  background: #000;
+  color: white;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+
+
+
 
 .clean-reader-body-prepare .clean-reader-target * {
   background-color: transparent !important;
