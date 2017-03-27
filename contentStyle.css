@@ -176,6 +176,9 @@
 .clean-reader-container-inner pre {
   padding: 10px;
 }
+.clean-reader-container-inner p {
+  margin-bottom: 0.6em;
+}
 .clean-reader-container-inner pre code {
   overflow: auto;
 }
