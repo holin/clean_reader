@@ -10,6 +10,7 @@ var ReaderHelper = ReaderHelper || {
         if (pre_parent_class) {
             $(elem).find("div > pre").parent().attr("class", pre_parent_class)
         }
+        $(elem).find("[aria-hidden]").remove()
         return elem
     }
 }
@@ -37,7 +38,7 @@ var Reader = Reader || {
         $("html").addClass("clean-reader-body").removeClass("clean-reader-body-prepare")
         this.make_container();
         var top = $("body").scrollTop();
-        $("#" + Reader.id).css("top", "" + top + "px")
+        $("#" + Reader.id).css("top", "" + (top - 10) + "px")
         $(".clean-reader-mask").css("top", "" + top + "px")
         $elem = $(elem)
         if ($elem.parents(".clean-reader-target").length > 0) {
@@ -153,10 +154,12 @@ var Reader = Reader || {
             "<span class='pre-background-toggle'>Dark</span>"
         )
         var $pre = container.append(pre.clone())
-        $("body").append($pre);
-        var top = $("body").scrollTop();
-        $pre.css("top", ""+top+"px");
+        $reader = $("#clean-reader-container")
+        $reader.append($pre);
         container.css("zoom", "" + Reader.current_zoom + "%")
+        var top = $reader.scrollTop();
+        top = top / Reader.current_zoom * 100
+        $pre.css("top", ""+top+"px");
     },
 
     init_events: function() {
