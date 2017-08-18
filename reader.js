@@ -25,7 +25,7 @@ var Reader = Reader || {
     zoom_step: 10,
 
     resize: function() {
-        var height = $(window).height()
+        var height = $(window).height() + 18;
         $(".clean-reader-container").css("height", "" + height + "px")
         var w = Reader.origin_width / Reader.current_zoom * 100;
         $(".clean-reader-container-inner").css("width", "" + w + "px")
