@@ -85,6 +85,9 @@
   font-size: 1.2em;
   margin: 15px 0 10px 0;
 }
+.clean-reader-body a {
+  color: rgb(0%, 37.8%, 81.2%);
+}
 .clean-reader-body body {
   width: 100% !important;
   font-family: Arial, Helvetica, sans-serif;
@@ -129,8 +132,6 @@
   border-radius: 2px;
   cursor: pointer;
 }
-
-
 
 
 
@@ -218,8 +219,6 @@
 .cr-clear {
   clear: both;
 }
-
-
 
 .clean-reader-toolbar {
   position: fixed;
