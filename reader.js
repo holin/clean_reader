@@ -37,8 +37,9 @@ var Reader = Reader || {
         this.update_zoom()
         $("html").addClass("clean-reader-body").removeClass("clean-reader-body-prepare")
         this.make_container();
-        var top = $("body").scrollTop();
-        $("#" + Reader.id).css("top", "" + (top - 10) + "px")
+        var top = $(document).scrollTop();
+        console.log("top", top)
+        $("#" + Reader.id).css("top", "" + (top - 1) + "px")
         $(".clean-reader-mask").css("top", "" + top + "px")
         $elem = $(elem)
         if ($elem.parents(".clean-reader-target").length > 0) {
