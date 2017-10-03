@@ -33,21 +33,36 @@ var Reader = Reader || {
 
     //main worker
     read: function(elem) {
+        var hide_klass = "clean-reader-hide"
+        var show_klass = "clean-reader-show"
+        $("body *").addClass(hide_klass);
+        $(elem).parent().css("height", ""+$(window).height()+"px").css("overflow-y", "auto")
+        var e = $(elem).addClass(show_klass).addClass("clean-reader-show-main").removeClass("clean-reader-target")
+
+        //insert mask
+        $("body").append('<div class="clean-reader-mask" style="background:black;"></div>')
+        //end insert mask
+
+
+        e.removeClass(hide_klass).find("*").removeClass(hide_klass)
+        while((e=e.parent()) && e.get(0).tagName != "BODY") {
+            e.removeClass(hide_klass).addClass(show_klass)
+        }
+
         this.current_zoom = Reader.zoomPercents[self.location.hostname] || 100;
         this.update_zoom()
-        $("html").addClass("clean-reader-body").removeClass("clean-reader-body-prepare")
-        this.make_container();
+        $("html").removeClass("clean-reader-body-prepare")
+        // this.make_container();
         var top = $(document).scrollTop();
-        console.log("top", top)
         $("#" + Reader.id).css("top", "" + (top - 1) + "px")
         $(".clean-reader-mask").css("top", "" + top + "px")
-        $elem = $(elem)
-        if ($elem.parents(".clean-reader-target").length > 0) {
-            $elem = $elem.parents(".clean-reader-target")
-        }
-        var cloned_elem = $elem.clone()
-        cloned_elem = ReaderHelper.clean(cloned_elem);
-        $("#" + Reader.id + " .clean-reader-container-inner .clean-reader-container-inner-content").html(cloned_elem)
+        // $elem = $(elem)
+        // if ($elem.parents(".clean-reader-target").length > 0) {
+        //     $elem = $elem.parents(".clean-reader-target")
+        // }
+        // var cloned_elem = $elem.clone()
+        // cloned_elem = ReaderHelper.clean(cloned_elem);
+        // $("#" + Reader.id + " .clean-reader-container-inner .clean-reader-container-inner-content").html(cloned_elem)
         Reader.dozoom()
         this.reading = true
     },
@@ -122,6 +137,11 @@ var Reader = Reader || {
             $("body .max-pre").remove();
             return;
         }
+
+        var hide_klass = "clean-reader-hide"
+        var show_klass = "clean-reader-show"
+        $("body *").removeClass(hide_klass).removeClass(show_klass).removeClass("clean-reader-show-main")
+
 
         Reader.reading = false
         $(".clean-reader-mask").remove();
